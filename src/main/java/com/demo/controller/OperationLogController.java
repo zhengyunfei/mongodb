@@ -1,19 +1,18 @@
 package com.demo.controller;
 
+import com.demo.pojo.OperationLog;
+import com.demo.service.OperationLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.demo.pojo.User;
-import com.demo.service.UserService;
-
 @Controller
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/log")
+public class OperationLogController {
 
 	@Autowired
-	private UserService userService;
+	private OperationLogService operationLogService;
 
 	@RequestMapping("/index")
 	public ModelAndView index () {
@@ -22,16 +21,16 @@ public class UserController {
 
 
 	@RequestMapping("/save")
-	public void saveUser (User user) {
-		userService.saveUser(user);
+	public void save (OperationLog log) {
+		operationLogService.save(log);
 	}
 
 	@RequestMapping("/find")
-	@SuppressWarnings("unused")
-	public ModelAndView findUser (String name) {
-		User user = userService.findUser(name);
+	public ModelAndView find (String mobile) {
+		OperationLog log = operationLogService.find(mobile);
 		ModelAndView mv=new ModelAndView();
-		mv.addObject("user",user);
+		mv.addObject("log",log);
 		return mv;
 	}
+
 }
