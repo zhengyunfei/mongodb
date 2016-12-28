@@ -23,10 +23,10 @@ public class OperationLogServiceImpl implements OperationLogService{
 		mongoTemplate.save(operationLog,OPERATION_LOGIN_COLLECTION);
 	}
 
-	public OperationLog find(String mobile) {
+	public OperationLog find(String content) {
 //		if (mongoTemplate == null)
 //			return null;
-		Query query = new Query(Criteria.where("mobile").is(mobile));
+		Query query = new Query(Criteria.where("content").is(content));
 		OperationLog log = mongoTemplate.findOne(query, OperationLog.class,OPERATION_LOGIN_COLLECTION);
 		if (log == null)
 			return null;
